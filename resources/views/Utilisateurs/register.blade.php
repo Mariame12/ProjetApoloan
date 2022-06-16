@@ -1,4 +1,3 @@
-
 <html>
 
 <head>
@@ -34,15 +33,18 @@
                     class="tab w3-btn w3-round-xlarge ">S'inscrire</label>
                 <div class="login-form">
                 
-                    <form method="POST" action="{{ route('save.login') }}">
+                    <form method="POST" action="{{ route('save.register') }}">
                         @csrf
 
                         <div class="sign-up-htm">
-                            @if(session('error'))
-                            <div style="color:red; text-align:center;" class="alert alert-danger">
-                                    {{session('error')}}
+                            <div class="group">
+                                <label class="label">Nom</label>
+                                <input type="text" name="nom" class="input">
                             </div>
-                         @endif
+                            <div class="group">
+                                <label class="label">Prenom</label>
+                                <input type="text" name="prenom" class="input">
+                            </div>
                             <div class="group">
                                 <label class="label"> Numero</label>
                                 <input type="text" name="numero" class="input">
@@ -57,8 +59,7 @@
                             </div>
                             <div class="hr-2"></div>
                             <div class="foot-lnk">
-                                <label class="label-foo-2 w3-btn w3-round-xlarge " for="tab-1">Vous
-                                    n’avez pas de compte&nbsp;? Inscrivez-vous!</a>
+                                <label class="label-foo-2 w3-btn w3-round-xlarge " for="tab-1">Deja Membre?</a>
                             </div>
                         </div>
                     </form>

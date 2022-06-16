@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 //----Les gets-----------
 Route::get('/', [AuthController::class,'index'])->name('index');
 Route::get('login', [AuthController::class,'login'])->name('login');
+Route::get('register', [AuthController::class,'register'])->name('register');
 Route::get('user/list', [AuthController::class,'list'])->name('userlist');
 Route::get('annonce/list', [AnnonceController::class,'list'])->name('annoncelist');
 Route::get('refil', [AuthController::class,'Refil']);

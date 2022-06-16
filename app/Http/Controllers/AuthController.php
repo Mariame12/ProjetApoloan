@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
 
     //public $apilink="https://api.oumardev.com/apoloanapi/";
-    function list(){
+    function list( Request $request){
         $response=Http::withHeaders(['Authorization' =>"Bear ".$_COOKIE['token']])->get("http://www.oumardev.com:5400/apoloanapi/user", [
             'numero' =>intval( $request->numero),
             'password' => $request->password,
@@ -22,12 +22,17 @@ class AuthController extends Controller
 
     public function index()
     {
-        return view('Presentation\accueil');
+        return view('Presentation.accueil');
     }  
    
     public function login()
     {
         return view('Utilisateurs.login');
+
+    } 
+    public function register()
+    {
+        return view('Utilisateurs.register');
 
     } 
  
