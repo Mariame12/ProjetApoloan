@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-//use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
@@ -11,9 +11,13 @@ class AuthController extends Controller
 
     //public $apilink="https://api.oumardev.com/apoloanapi/";
     function list(){
-        $response = Http::get('http://www.oumardev.com:5400/apoloanapi/user')->json();
-        return view('Utilisateurs\list',['response'=>$response]);
-        var_dump($response);
+        $response=Http::withHeaders(['Authorization' =>"Bear ".$_COOKIE['token']])->get("http://www.oumardev.com:5400/apoloanapi/user", [
+            'numero' =>intval( $request->numero),
+            'password' => $request->password,
+            
+        ])->json();
+        //return view('Utilisateurs\list',['response'=>$response]);
+        echo var_dump($response);
         }
 
     public function index()
@@ -40,7 +44,7 @@ class AuthController extends Controller
             'password' => 'required',
             
         ]);
-        $response = Http::post('http://www.oumardev.com:5400/apoloanapi/register', [
+        $response=Http::withHeaders(['Authorization' =>"Bear ".$_COOKIE['token']])->post('http://www.oumardev.com:5400/apoloanapi/register', [
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'numero' =>intval( $request->numero),
@@ -61,16 +65,19 @@ class AuthController extends Controller
          ])->json();
         
         if(isset($response["error"])){
+            
             return redirect()->route('login')->with('error',$response["error"]);
             
         }
         else{
             $cookie_name = "token";
             $cookie_value = $response["token"];
-            setcookie($cookie_name, $cookie_value, time()+ (86400*30), "/");
+            setcookie($cookie_name, $cookie_value, time()+ (86400), "/");
 
-          //$response=Http::withHeaders(['Authorization' =>"Bear " + $_COOKIE['token']])->post("http://www.oumardev.com:5400/apoloanapi/login");
-            return view('Presentation/menu');
+          $response=Http::withHeaders(['Authorization' =>"Bear $cookie_value"])->post("http://www.oumardev.com:5400/apoloanapi/login");
+          return view('Presentation/menu');
+         // $_COOKIE['token']
+            
         }
         
     }

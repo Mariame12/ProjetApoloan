@@ -19,11 +19,28 @@
                     <option value="EMPRUNT">Emprunt</option>
                     <option value="PRET">Pret</option>
                 </select>
-                <input class="input--style-3" type="text" placeholder="Duree" name="duree">
+                <select name="duree">
+                    <option selected="selected">"Duree"</option>
+                    <option value="1">1 mois</option>
+                    <option value="2">2 mois</option>
+                    <option value="3">3 mois</option>
+                    <option value="4">4 mois</option>
+                    <option value="5">5 mois</option>
+                    <option value="6">6 mois</option>
+                    <option value="7">7 mois</option>
+                    <option value="8">8 mois</option>
+                    <option value="9">9 mois</option>
+                    <option value="10">10 mois</option>
+                    <option value="11">11 mois</option>
+                    <option value="12">12 mois</option>
+                </select>
                 <input class="input--style-3 js-datepicker" type="number" placeholder="Montant" name="montant">
-                <input class="input--style-3 js-datepicker" type="text" placeholder="Modalite du paiement" name="modalitePaiement">
-                
-
+                <select name="modalitePaiement">
+                    <option >"Modalite du paiement"</option>
+                    <option value=1>Chaque 1 mois</option>
+                    <option value=2>Chaque 2 mois</option>
+                    <option value=3>Chaque 3 mois</option>
+                </select>
 
                 <button type="submit">Valider l annonce</button>
             </form>
